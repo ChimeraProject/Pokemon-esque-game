@@ -26,24 +26,34 @@ export class Map {
   }
 
   /**
-   * Generate a test map
+   * Generate a Route 29 style map (Pokémon HeartGold starting area)
    */
   generateTestMap() {
     const tiles = [];
-    
+    const W = TILE_TYPES.WATER;   // Water (north boundary)
+    const G = TILE_TYPES.GRASS;   // Grass (wild Pokemon)
+    const P = TILE_TYPES.PATH;    // Path (safe walkway)
+    const T = TILE_TYPES.TREE;    // Tree (obstacle)
+    const R = TILE_TYPES.WALL;    // Wall/Rock (boundary)
+
+    // Create Route 29: Starting area with path leading down, trees on sides, grass in middle
+    const mapData = [
+      [W, W, W, W, W, W, W, W, W, W, W, W, W, W, W],  // Row 0: Water (north)
+      [R, T, T, G, G, G, G, G, G, G, T, T, T, T, R],  // Row 1: Trees and grass
+      [R, T, P, P, P, P, P, P, P, G, G, G, T, T, R],  // Row 2: Main path
+      [R, T, P, G, G, G, G, G, P, G, G, G, T, T, R],  // Row 3: Path with grass pockets
+      [R, G, P, G, G, G, G, G, P, G, G, G, G, T, R],  // Row 4: Grassy area
+      [R, G, P, G, G, G, G, G, P, G, G, G, G, G, R],  // Row 5: Open grass
+      [R, G, G, G, G, G, G, G, P, G, G, G, G, G, R],  // Row 6: Path curves
+      [R, G, G, G, G, G, G, G, P, P, P, G, G, G, R],  // Row 7: Path to south
+      [R, G, G, G, T, G, G, G, G, G, P, G, G, G, R],  // Row 8: Tree obstacle
+      [R, R, R, R, R, R, R, R, R, R, R, R, R, R, R],  // Row 9: South boundary
+    ];
+
     for (let y = 0; y < this.height; y++) {
       const row = [];
       for (let x = 0; x < this.width; x++) {
-        // Create simple layout
-        if (x === 0 || x === this.width - 1 || y === 0 || y === this.height - 1) {
-          row.push(TILE_TYPES.WATER); // Border
-        } else if (x === 7 && y === 5) {
-          row.push(TILE_TYPES.TREE); // Tree
-        } else if ((x === 7 || x === 8) && (y >= 3 && y <= 7)) {
-          row.push(TILE_TYPES.PATH); // Path
-        } else {
-          row.push(TILE_TYPES.GRASS); // Grass
-        }
+        row.push(mapData[y][x]);
       }
       tiles.push(row);
     }

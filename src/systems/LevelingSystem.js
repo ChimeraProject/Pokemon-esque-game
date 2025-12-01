@@ -38,7 +38,7 @@ export class LevelingSystem {
 
     // Set HP to full if not already set
     if (!pokemon.currentHp && pokemon.currentHp !== 0) {
-      pokemon.currentHP = pokemon.stats.hp;
+      pokemon.currentHp = pokemon.stats.hp;
     }
 
     return pokemon;

@@ -1,19 +1,23 @@
 {
-  "name": "pokemon-esque-game",
-  "version": "1.0.0",
-  "description": "A Pokemon-style game built with JavaScript",
-  "main": "src/game.js",
-  "type": "module",
+  "name": "pokemon-heartgold-clone",
+  "version": "0.1.0",
+  "description": "Browser-based clone of Pokemon HeartGold",
+  "main": "index.html",
   "scripts": {
-    "start": "npx http-server . -p 8080 -c-1",
-    "dev": "npx http-server . -p 8080 -c-1 -o"
+    "start": "http-server . -p 8080",
+    "build": "echo 'No build step yet'",
+    "test": "echo 'No tests yet'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
   },
   "keywords": [
     "pokemon",
-    "game",
-    "javascript",
-    "canvas"
+    "rpg",
+    "browser",
+    "phaser"
   ],
-  "author": "",
+  "author": "ChimeraProject",
   "license": "MIT"
 }

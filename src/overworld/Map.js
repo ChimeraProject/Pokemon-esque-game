@@ -4,6 +4,7 @@
  */
 
 import { CONFIG, TILE_TYPES } from '../config.js';
+import { TilesetManager } from '../graphics/TilesetManager.js';
 
 export class Map {
   constructor() {
@@ -14,6 +15,12 @@ export class Map {
     // Simple test map (Route 29 style)
     // 0 = Grass, 1 = Water, 2 = Wall/Tree, 3 = Path
     this.tiles = this.generateTestMap();
+    
+    // Initialize tileset manager
+    this.tilesetManager = new TilesetManager();
+    this.tilesetManager.loadTileset().catch(err => {
+      console.warn('Failed to load tileset, using fallback rendering:', err);
+    });
     
     console.log(`🗺️  Map created: ${this.width}x${this.height} tiles`);
   }
@@ -97,6 +104,22 @@ export class Map {
    * Render single tile
    */
   renderTile(ctx, x, y, type) {
+    const size = this.tileSize;
+
+    // Use tileset if loaded, otherwise fallback to color rendering
+    if (this.tilesetManager && this.tilesetManager.isLoaded()) {
+      const tileIndex = this.tilesetManager.getTileIndex(type);
+      this.tilesetManager.drawTile(ctx, tileIndex, x, y);
+    } else {
+      // Fallback rendering with solid colors
+      this.renderTileFallback(ctx, x, y, type);
+    }
+  }
+
+  /**
+   * Fallback tile rendering (when tileset not loaded)
+   */
+  renderTileFallback(ctx, x, y, type) {
     const size = this.tileSize;
 
     switch (type) {

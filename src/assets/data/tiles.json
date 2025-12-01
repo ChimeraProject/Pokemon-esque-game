@@ -1,0 +1,21 @@
+{
+  "tiles": [
+    { "id": 0, "name": "grass", "color": "#4a8c4a", "walkable": true },
+    { "id": 1, "name": "wall", "color": "#4a4a4a", "walkable": false },
+    { "id": 2, "name": "house-wall", "color": "#8b4513", "walkable": false },
+    { "id": 3, "name": "player-house-door", "color": "#cd853f", "walkable": true, "door": "player-house" },
+    { "id": 4, "name": "elm-lab-door", "color": "#daa520", "walkable": true, "door": "elm-lab" },
+    { "id": 5, "name": "path", "color": "#c2b280", "walkable": true },
+    { "id": 6, "name": "neighbor-wall", "color": "#8b4513", "walkable": false },
+    { "id": 7, "name": "neighbor-roof", "color": "#a0522d", "walkable": false },
+    { "id": 8, "name": "neighbor-door", "color": "#cd853f", "walkable": true, "door": "neighbor-house" },
+    { "id": 9, "name": "water", "color": "#4169e1", "walkable": false },
+    { "id": 10, "name": "tall-grass", "color": "#228b22", "walkable": true, "wildEncounter": true },
+    { "id": 11, "name": "tree", "color": "#006400", "walkable": false },
+    { "id": 12, "name": "pokemart-wall", "color": "#4169e1", "walkable": false },
+    { "id": 13, "name": "pokecenter-door", "color": "#ff6347", "walkable": true, "door": "pokemon-center" },
+    { "id": 14, "name": "pokecenter-wall", "color": "#ff4500", "walkable": false },
+    { "id": 15, "name": "pokemart-door", "color": "#6495ed", "walkable": true, "door": "pokemart" },
+    { "id": 16, "name": "ocean", "color": "#1e90ff", "walkable": false }
+  ]
+}

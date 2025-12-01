@@ -2,6 +2,35 @@
 
 A faithful browser recreation of Pokemon HeartGold/SoulSilver, built with Phaser.js. Explore Johto, battle trainers, collect Pokemon, and relive the story—all in your browser at 60 FPS.
 
+## Current Status
+
+### ✅ Implemented Features
+- **Game Framework**: Phaser 3.55 with Webpack + Babel for ES6 module support
+- **Tile-based Map System**: JSON-based tilemaps with collision detection
+  - New Bark Town (starting location)
+  - Route 29 (first route with wild Pokemon encounters)
+  - Cherrygrove City
+- **Player Movement**: Smooth 8-directional movement with WASD/Arrow keys
+- **Map Transitions**: Automatic transitions between connected maps
+- **NPC System**: Dialogue framework with interactive NPCs
+- **Battle System**: Complete turn-based battle UI with:
+  - Health bars with color coding (green/yellow/red)
+  - Move selection menu
+  - Attack animations and damage calculation
+  - Wild Pokemon encounters in tall grass
+  - Trainer battles support
+  - Run option for wild battles
+- **Pokemon Data**: 7 Pokemon with stats, moves, and evolution data
+  - Johto Starters: Chikorita, Cyndaquil, Totodile
+  - Wild Pokemon: Pidgey, Rattata, Sentret, Hoothoot
+- **Type Chart**: Complete Pokemon type effectiveness system
+
+### 🎮 Controls
+- **Movement**: Arrow keys or WASD
+- **Interact/Confirm**: Space or Enter
+- **Cancel/Run**: Escape or X
+- **Battle Move Selection**: Arrow keys to navigate, Space/Enter/Z to confirm
+
 ## Purpose
 This project focuses on ideating, designing, coding, and building a playable browser-based clone of Pokemon HeartGold/SoulSilver. Replicate core RPG elements: exploration, turn-based battles, collecting/training, story quests. Optimize for HTML5/JS/Canvas, 60 FPS in browsers like Chrome/Firefox/Safari. Prioritize accessibility (mobile, keyboard, colorblind palettes, subtitles).
 
@@ -81,9 +110,26 @@ This project focuses on ideating, designing, coding, and building a playable bro
 4. Deploy: Push to `main`, enable GitHub Pages.
 
 ## Project Structure
-- `assets/`: Art, audio, data (e.g., tilesets, sprites)
-- `src/`: JS code (overworld, battles, UI)
-- `index.html`: Game entry
+```
+src/
+├── index.js           # Game entry point with Phaser config
+├── scenes/
+│   ├── BootScene.js   # Asset loading and initialization
+│   ├── OverworldScene.js  # Main exploration scene
+│   └── BattleScene.js # Turn-based battle system
+├── game/
+│   ├── Pokemon.js     # Pokemon class with stats/moves
+│   ├── Player.js      # Player state and save/load
+│   ├── BattleSystem.js # Battle logic and damage calc
+│   ├── MapLoader.js   # Tilemap rendering and collision
+│   ├── DialogueSystem.js # NPC dialogue display
+│   └── NPC.js         # NPC and Trainer classes
+└── assets/
+    └── data/
+        ├── maps/      # JSON map definitions
+        ├── pokemon/   # Pokemon data and type chart
+        └── tiles.json # Tile configuration
+```
 
 ## Tools/Resources
 - Design: Aseprite; share links.

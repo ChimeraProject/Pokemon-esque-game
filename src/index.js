@@ -31,3 +31,6 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+// Export game instance for potential external access
+export default game;

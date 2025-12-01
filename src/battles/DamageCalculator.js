@@ -123,13 +123,16 @@ export class DamageCalculator {
 
     /**
      * Check if attack is a critical hit
+     * Base crit rate is 1/24 (~4.17%) for normal moves
+     * High crit moves have 1/8 (12.5%) rate
      * @param {Object} move 
      * @returns {boolean}
      */
     static checkCritical(move) {
-        // Base crit rate is 1/24 (~4.17%)
-        // High crit moves have 1/8 (12.5%)
-        const critRate = move.highCrit ? 1/8 : 1/24;
+        const CRIT_RATE_NORMAL = 1 / 24;  // ~4.17%
+        const CRIT_RATE_HIGH = 1 / 8;      // 12.5%
+        
+        const critRate = move.highCrit ? CRIT_RATE_HIGH : CRIT_RATE_NORMAL;
         return Math.random() < critRate;
     }
 

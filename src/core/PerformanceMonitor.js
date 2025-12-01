@@ -3,6 +3,14 @@
  * Inspired by VVVVVV's HTML5 optimization approach
  */
 
+// Performance display colors
+const PERF_COLORS = {
+    GOOD: '#0F0',     // Green - good FPS
+    WARNING: '#FF0',  // Yellow - acceptable FPS
+    BAD: '#F00',      // Red - poor FPS
+    TEXT: '#FFF'      // White - general text
+};
+
 /**
  * PerformanceMonitor class - Tracks game performance
  */
@@ -208,13 +216,13 @@ export class PerformanceMonitor {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         ctx.fillRect(x, y, 80, 60);
 
-        // Text
-        ctx.fillStyle = this.fps >= this.targetFPS ? '#0F0' : 
-                       (this.fps >= this.fpsWarningThreshold ? '#FF0' : '#F00');
+        // FPS text with color based on performance
+        ctx.fillStyle = this.fps >= this.targetFPS ? PERF_COLORS.GOOD : 
+                       (this.fps >= this.fpsWarningThreshold ? PERF_COLORS.WARNING : PERF_COLORS.BAD);
         ctx.font = '10px monospace';
         ctx.fillText(`FPS: ${this.fps}`, x + 4, y + 12);
 
-        ctx.fillStyle = '#FFF';
+        ctx.fillStyle = PERF_COLORS.TEXT;
         ctx.fillText(`Frame: ${this.avgFrameTime.toFixed(1)}ms`, x + 4, y + 24);
         ctx.fillText(`Update: ${this.updateTime.toFixed(1)}ms`, x + 4, y + 36);
         ctx.fillText(`Render: ${this.renderTime.toFixed(1)}ms`, x + 4, y + 48);

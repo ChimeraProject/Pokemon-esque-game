@@ -177,12 +177,16 @@ export class Pokemon {
     }
 
     /**
-     * Get experience required for a level (medium-fast growth rate)
+     * Get experience required for a level
+     * Uses medium-fast growth rate (simplified formula)
+     * Note: Pokemon uses more complex formulas per growth rate group.
+     * This simplified formula: n^3 provides balanced progression.
      * @param {number} level 
      * @returns {number}
      */
     getExpForLevel(level) {
-        // Medium-fast: n^3
+        // Simplified medium-fast approximation: level^3
+        // Full formula would be: (6/5)*L³ - 15*L² + 100*L - 140
         return Math.pow(level, 3);
     }
 

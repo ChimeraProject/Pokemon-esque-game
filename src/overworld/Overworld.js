@@ -17,6 +17,10 @@ export class OverworldScene {
     this.encounterSystem = new EncounterSystem();
     this.npcManager = new NPCManager();
     
+    // Prevent encounters for first few frames after startup
+    this.framesSinceStart = 0;
+    this.encountersEnabledAfter = 60; // 60 frames = ~1 second at 60fps
+    
     // Initialize NPCs for the map
     this.initializeNPCs();
     
@@ -131,23 +135,26 @@ export class OverworldScene {
    * Update scene logic
    */
   update(deltaTime) {
+    this.framesSinceStart++;
     this.player.update(deltaTime, this.map);
     
     // Update NPCs
     this.npcManager.update(deltaTime);
     
-    // Check for wild Pokemon encounters
-    const playerTileX = Math.floor(this.player.x / CONFIG.tile.size);
-    const playerTileY = Math.floor(this.player.y / CONFIG.tile.size);
-    
-    // Check for encounter every frame if player is moving
-    if (this.player.isMoving) {
-      const encounter = this.encounterSystem.checkForEncounter(this.map, playerTileX, playerTileY);
+    // Check for wild Pokemon encounters (only after initial startup period)
+    if (this.framesSinceStart > this.encountersEnabledAfter) {
+      const playerTileX = Math.floor(this.player.x / CONFIG.tile.size);
+      const playerTileY = Math.floor(this.player.y / CONFIG.tile.size);
       
-      if (encounter) {
-        console.log(`🔥 Encountered a wild ${encounter.name}!`);
-        // Trigger battle transition
-        this.game.onEncounter(encounter);
+      // Check for encounter every frame if player is moving
+      if (this.player.isMoving) {
+        const encounter = this.encounterSystem.checkForEncounter(this.map, playerTileX, playerTileY);
+        
+        if (encounter) {
+          console.log(`🔥 Encountered a wild ${encounter.name}!`);
+          // Trigger battle transition
+          this.game.onEncounter(encounter);
+        }
       }
     }
     

@@ -56,12 +56,21 @@ export class EncounterSystem {
     const tileType = map.getTile(playerTileX, playerTileY);
     const encounterRate = this.encounterRates[tileType] || 0;
 
+    // First time - initialize position
+    if (this.lastTileX === -1 && this.lastTileY === -1) {
+      this.lastTileX = playerTileX;
+      this.lastTileY = playerTileY;
+      console.log(`🌍 Starting at tile: (${playerTileX}, ${playerTileY})`);
+      return null;
+    }
+
     // Only count encounters when tile changes (prevents instant encounters on startup)
     if (playerTileX !== this.lastTileX || playerTileY !== this.lastTileY) {
       this.lastTileX = playerTileX;
       this.lastTileY = playerTileY;
       // Entering a new tile, reset step counter
       this.encounterSteps = 0;
+      console.log(`📍 Moved to new tile: (${playerTileX}, ${playerTileY}), type: ${tileType}`);
       return null;
     }
 
@@ -73,7 +82,7 @@ export class EncounterSystem {
     // Increment encounter steps (only when on same tile for multiple frames)
     this.encounterSteps++;
 
-    // Log for debugging
+    // Log for debugging (every 5 steps)
     if (this.encounterSteps % 5 === 0) {
       console.log(`Steps: ${this.encounterSteps}/${this.encounterThreshold} on tile type ${tileType}`);
     }
@@ -81,7 +90,7 @@ export class EncounterSystem {
     // Check if threshold met and roll encounter
     if (this.encounterSteps >= this.encounterThreshold) {
       const roll = Math.random();
-      console.log(`Encounter check: roll ${roll} vs rate ${encounterRate}`);
+      console.log(`Encounter check: roll ${roll.toFixed(2)} vs rate ${encounterRate}`);
       
       if (roll < encounterRate) {
         console.log('✅ Encounter triggered!');

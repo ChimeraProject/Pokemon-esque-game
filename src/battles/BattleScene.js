@@ -20,6 +20,7 @@ export class BattleScene {
     this.battleLog = [];
     this.animationQueue = [];
     this.battleOver = false;
+    this.waitingForEnemyTurn = false; // Track if we're waiting for enemy turn
     
     // Input tracking to prevent rapid repeated inputs
     this.lastInputTime = 0;
@@ -137,15 +138,22 @@ export class BattleScene {
       return;
     }
     
-    // Set to waiting state and execute enemy turn after delay
+    // Set to waiting state and schedule enemy turn after delay
     this.currentMenuState = 'waiting';
-    setTimeout(() => this.executeEnemyTurn(), 1000);
+    this.waitingForEnemyTurn = true;
+    setTimeout(() => {
+      if (this.waitingForEnemyTurn) {
+        this.executeEnemyTurn();
+      }
+    }, 1000);
   }
 
   /**
    * Execute enemy's turn
    */
   executeEnemyTurn() {
+    this.waitingForEnemyTurn = false;
+    
     if (this.battleSystem.enemyActive.currentHp <= 0) {
       this.addBattleLog(`${this.battleSystem.enemyActive.name} fainted!`);
       

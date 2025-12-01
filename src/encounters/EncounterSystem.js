@@ -6,6 +6,7 @@
 import { CONFIG, TILE_TYPES } from '../config.js';
 import { POKEMON } from '../data/pokemon.js';
 import { MOVES } from '../data/moves.js';
+import LOCATION_ENCOUNTERS from '../data/location-encounters.js';
 
 export class EncounterSystem {
   constructor() {
@@ -19,23 +20,14 @@ export class EncounterSystem {
       [TILE_TYPES.TREE]: 0        // No encounters on trees
     };
 
-    // Wild Pokemon pools by area (Route 29 style)
-    this.wildPokemonPools = {
-      'route29': [
-        { species: 'pidgeot', level: 5, rate: 0.30 },
-        { species: 'rattata', level: 3, rate: 0.40 },
-        { species: 'sentret', level: 4, rate: 0.30 }
-      ],
-      'default': [
-        { species: 'pidgeot', level: 5, rate: 0.5 },
-        { species: 'rattata', level: 3, rate: 0.5 }
-      ]
-    };
+    // Wild Pokemon pools by location (dynamically loaded)
+    this.wildPokemonPools = LOCATION_ENCOUNTERS;
 
     this.encounterSteps = 0;
     this.encounterThreshold = 0;
     this.lastTileX = -1;
     this.lastTileY = -1;
+    this.currentLocationId = null;
     this.setNewEncounterThreshold();
 
     console.log('🎣 Encounter System initialized');
@@ -52,9 +44,14 @@ export class EncounterSystem {
   /**
    * Check for encounter when player moves
    */
-  checkForEncounter(map, playerTileX, playerTileY) {
+  checkForEncounter(map, playerTileX, playerTileY, locationId = null) {
     const tileType = map.getTile(playerTileX, playerTileY);
     const encounterRate = this.encounterRates[tileType] || 0;
+
+    // Track current location for encounter pool selection
+    if (locationId) {
+      this.currentLocationId = locationId;
+    }
 
     // First time - initialize position
     if (this.lastTileX === -1 && this.lastTileY === -1) {
@@ -70,7 +67,7 @@ export class EncounterSystem {
       this.lastTileY = playerTileY;
       // Entering a new tile, reset step counter
       this.encounterSteps = 0;
-      console.log(`📍 Moved to new tile: (${playerTileX}, ${playerTileY}), type: ${tileType}`);
+      console.log(`📍 Moved to new tile: (${playerTileX}, ${playerTileY}), type: ${tileType}, location: ${locationId}`);
       return null;
     }
 
@@ -95,7 +92,7 @@ export class EncounterSystem {
       if (roll < encounterRate) {
         console.log('✅ Encounter triggered!');
         this.setNewEncounterThreshold();
-        return this.generateWildPokemon('route29');
+        return this.generateWildPokemon(locationId);
       }
       this.setNewEncounterThreshold();
     }
@@ -104,12 +101,27 @@ export class EncounterSystem {
   }
 
   /**
-   * Generate a random wild Pokemon from pool
+   * Generate a random wild Pokemon from location-specific pool
    */
-  generateWildPokemon(areaName = 'default') {
-    const pool = this.wildPokemonPools[areaName] || this.wildPokemonPools['default'];
+  generateWildPokemon(locationId = null) {
+    // First try location-specific encounters
+    let pool = [];
     
-    // Select random Pokemon from pool based on rates
+    if (locationId && this.wildPokemonPools[locationId]) {
+      pool = this.wildPokemonPools[locationId].encounters || [];
+    }
+    
+    // Fallback to Route 29 if not found
+    if (pool.length === 0) {
+      pool = this.wildPokemonPools['route-29']?.encounters || [];
+    }
+    
+    if (pool.length === 0) {
+      console.warn(`No Pokemon pool found for location: ${locationId}`);
+      return null;
+    }
+
+    // Select random Pokemon from pool based on encounter rates
     let random = Math.random();
     let selected = pool[0];
     
@@ -121,8 +133,13 @@ export class EncounterSystem {
       random -= pokemon.rate;
     }
 
+    // Randomize level within range
+    const minLevel = selected.level[0] || selected.level;
+    const maxLevel = selected.level[1] || selected.level;
+    const level = minLevel + Math.floor(Math.random() * (maxLevel - minLevel + 1));
+
     // Create Pokemon instance with stats and moves
-    return this.createPokemonInstance(selected.species, selected.level);
+    return this.createPokemonInstance(selected.species, level);
   }
 
   /**

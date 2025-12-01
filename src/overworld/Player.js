@@ -117,31 +117,56 @@ export class Player {
   }
 
   /**
-   * Render player
+   * Render player - Pokemon style sprite
    */
   render(ctx) {
-    // Simple colored rectangle (placeholder for sprite)
-    const color = this.isMoving ? '#4CAF50' : '#45a049';
+    // Pokemon-style player sprite with simple pixel art
+    const x = this.x;
+    const y = this.y;
     
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-
-    // Draw direction indicator
-    ctx.fillStyle = '#FFD700';
-    const size = 2;
+    // Skin/body color
+    ctx.fillStyle = '#FDBCB4';
     
+    // Head
+    ctx.fillRect(x + 6, y + 1, 4, 4);
+    
+    // Body (shirt - blue like typical SNES protagonist)
+    ctx.fillStyle = '#0052CC';
+    ctx.fillRect(x + 5, y + 5, 6, 6);
+    
+    // Arms
+    ctx.fillStyle = '#FDBCB4';
+    ctx.fillRect(x + 2, y + 5, 2, 4);
+    ctx.fillRect(x + 12, y + 5, 2, 4);
+    
+    // Legs (pants - brown)
+    ctx.fillStyle = '#6B4423';
+    ctx.fillRect(x + 5, y + 11, 2, 5);
+    ctx.fillRect(x + 9, y + 11, 2, 5);
+    
+    // Shoes (dark)
+    ctx.fillStyle = '#333333';
+    ctx.fillRect(x + 5, y + 14, 2, 2);
+    ctx.fillRect(x + 9, y + 14, 2, 2);
+    
+    // Eyes - indicate direction with look
+    ctx.fillStyle = '#000000';
     switch (this.direction) {
       case 'up':
-        ctx.fillRect(this.x + 7, this.y + 2, 2, 2);
+        ctx.fillRect(x + 7, y + 2, 1, 1);
+        ctx.fillRect(x + 9, y + 2, 1, 1);
         break;
       case 'down':
-        ctx.fillRect(this.x + 7, this.y + 12, 2, 2);
+        ctx.fillRect(x + 7, y + 3, 1, 1);
+        ctx.fillRect(x + 9, y + 3, 1, 1);
         break;
       case 'left':
-        ctx.fillRect(this.x + 2, this.y + 7, 2, 2);
+        ctx.fillRect(x + 6, y + 2, 1, 1);
+        ctx.fillRect(x + 6, y + 3, 1, 1);
         break;
       case 'right':
-        ctx.fillRect(this.x + 12, this.y + 7, 2, 2);
+        ctx.fillRect(x + 10, y + 2, 1, 1);
+        ctx.fillRect(x + 10, y + 3, 1, 1);
         break;
     }
 

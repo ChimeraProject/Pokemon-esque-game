@@ -128,51 +128,86 @@ export class Map {
 
   /**
    * Fallback tile rendering (when tileset not loaded)
+   * Uses Pokemon Ruby/HeartGold inspired colors
    */
   renderTileFallback(ctx, x, y, type) {
     const size = this.tileSize;
 
     switch (type) {
       case TILE_TYPES.GRASS:
-        ctx.fillStyle = '#2D5016';
+        // Bright green Pokemon grass
+        ctx.fillStyle = '#38A800';
         ctx.fillRect(x, y, size, size);
-        // Add grass texture
-        ctx.fillStyle = '#3D6B1F';
+        // Add grass blade variations for texture
+        ctx.fillStyle = '#2D8C00';
         ctx.fillRect(x + 2, y + 2, 2, 2);
-        ctx.fillRect(x + 10, y + 8, 2, 2);
+        ctx.fillRect(x + 10, y + 10, 2, 2);
+        ctx.fillStyle = '#419900';
+        ctx.fillRect(x + 4, y + 12, 2, 2);
+        ctx.fillRect(x + 12, y + 4, 2, 2);
+        // Light grass spots
+        ctx.fillStyle = '#47B800';
+        ctx.fillRect(x + 6, y + 6, 1, 1);
+        ctx.fillRect(x + 11, y + 7, 1, 1);
         break;
 
       case TILE_TYPES.WATER:
-        ctx.fillStyle = '#1E90FF';
+        // Deep blue Pokemon water
+        ctx.fillStyle = '#0088FF';
         ctx.fillRect(x, y, size, size);
-        // Wave pattern
-        ctx.strokeStyle = '#0077BE';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(x + 2, y + 8);
-        ctx.lineTo(x + 14, y + 8);
-        ctx.stroke();
+        // Wave animation effect
+        ctx.fillStyle = '#0066DD';
+        ctx.fillRect(x + 1, y + 6, 3, 1);
+        ctx.fillRect(x + 8, y + 4, 3, 1);
+        ctx.fillRect(x + 12, y + 9, 3, 1);
+        // Light reflection
+        ctx.fillStyle = '#00BBFF';
+        ctx.fillRect(x + 5, y + 2, 2, 2);
+        ctx.fillRect(x + 11, y + 12, 2, 2);
         break;
 
       case TILE_TYPES.PATH:
-        ctx.fillStyle = '#8B7355';
+        // Tan/beige path like Route 29
+        ctx.fillStyle = '#D2B48C';
         ctx.fillRect(x, y, size, size);
-        ctx.fillStyle = '#A0826D';
-        ctx.fillRect(x + 4, y + 4, 8, 8);
+        // Path texture variations
+        ctx.fillStyle = '#C19A6B';
+        ctx.fillRect(x + 2, y + 2, 2, 2);
+        ctx.fillRect(x + 10, y + 8, 2, 2);
+        ctx.fillStyle = '#DEB887';
+        ctx.fillRect(x + 6, y + 10, 2, 2);
         break;
 
       case TILE_TYPES.TREE:
-        ctx.fillStyle = '#654321';
-        ctx.fillRect(x + 4, y + 8, 8, 8);
-        ctx.fillStyle = '#228B22';
+        // Brown trunk
+        ctx.fillStyle = '#8B4513';
+        ctx.fillRect(x + 5, y + 10, 6, 6);
+        // Green foliage - darker shade
+        ctx.fillStyle = '#1B6B1B';
         ctx.beginPath();
-        ctx.arc(x + 8, y + 6, 6, 0, Math.PI * 2);
+        ctx.arc(x + 8, y + 5, 7, 0, Math.PI * 2);
         ctx.fill();
+        // Lighter green highlights
+        ctx.fillStyle = '#2D8C2D';
+        ctx.fillRect(x + 5, y + 3, 6, 4);
         break;
 
       case TILE_TYPES.WALL:
       default:
-        ctx.fillStyle = '#555555';
+        // Stone/rock wall
+        ctx.fillStyle = '#808080';
+        ctx.fillRect(x, y, size, size);
+        // Stone brick pattern
+        ctx.fillStyle = '#696969';
+        ctx.fillRect(x + 1, y + 1, 7, 7);
+        ctx.fillRect(x + 8, y + 8, 7, 7);
+        // Light stone highlight
+        ctx.fillStyle = '#A9A9A9';
+        ctx.fillRect(x + 8, y + 1, 7, 7);
+        ctx.fillRect(x + 1, y + 8, 7, 7);
+        break;
+    }
+  }
         ctx.fillRect(x, y, size, size);
         ctx.strokeStyle = '#444444';
         ctx.lineWidth = 1;

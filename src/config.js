@@ -22,7 +22,7 @@ export const CONFIG = {
 
   // Game physics
   physics: {
-    moveSpeed: 0.1,    // tiles per frame
+    moveSpeed: 0.25,   // tiles per frame (increased for faster movement like SNES games)
     friction: 0.85,
     gravity: 0.0       // No gravity in overworld
   },

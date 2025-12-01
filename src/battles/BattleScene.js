@@ -14,7 +14,7 @@ export class BattleScene {
     
     this.battleSystem = new BattleSystem(this.playerTeam, this.enemyTeam);
     
-    this.currentMenuState = 'action'; // 'action', 'move', 'switch'
+    this.currentMenuState = 'action'; // 'action', 'move', 'switch', 'waiting'
     this.selectedAction = 0;
     this.selectedMove = 0;
     this.battleLog = [];
@@ -42,6 +42,11 @@ export class BattleScene {
 
     const now = Date.now();
     const canInput = now - this.lastInputTime > this.inputDelay;
+
+    // Don't accept input while waiting for enemy turn
+    if (this.currentMenuState === 'waiting') {
+      return;
+    }
 
     if (this.currentMenuState === 'action') {
       if (canInput && (input.left || input.right || input.down || input.up)) {
@@ -120,10 +125,21 @@ export class BattleScene {
     
     this.addBattleLog(this.battleSystem.battleLog[this.battleSystem.battleLog.length - 1]);
     
-    // Enemy turn
-    setTimeout(() => this.executeEnemyTurn(), 1000);
+    // Check if enemy fainted
+    if (this.battleSystem.enemyActive.currentHp <= 0) {
+      this.addBattleLog(`${this.battleSystem.enemyActive.name} fainted!`);
+      
+      // Check if all enemy Pokemon are fainted
+      if (this.battleSystem.getWinner() === 'player') {
+        this.addBattleLog('Victory! You won the battle!');
+        this.battleOver = true;
+      }
+      return;
+    }
     
-    this.currentMenuState = 'action';
+    // Set to waiting state and execute enemy turn after delay
+    this.currentMenuState = 'waiting';
+    setTimeout(() => this.executeEnemyTurn(), 1000);
   }
 
   /**
@@ -147,6 +163,7 @@ export class BattleScene {
     
     if (validMoves.length === 0) {
       this.addBattleLog(`${this.battleSystem.enemyActive.name} has no PP left!`);
+      this.currentMenuState = 'action';
       return;
     }
     
@@ -168,7 +185,11 @@ export class BattleScene {
         this.addBattleLog('Defeat! You lost the battle!');
         this.battleOver = true;
       }
+      return;
     }
+    
+    // Return to action menu for player's next turn
+    this.currentMenuState = 'action';
   }
 
   /**

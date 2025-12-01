@@ -218,6 +218,7 @@ export class BattleScene {
         LevelingSystem.addEVs(pokemon, evGains);
       }
     }
+  }
 
   /**
    * Execute enemy's turn

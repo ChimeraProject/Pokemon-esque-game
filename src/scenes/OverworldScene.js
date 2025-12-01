@@ -3,6 +3,7 @@ import { MapLoader } from '../game/MapLoader';
 import { DialogueSystem } from '../game/DialogueSystem';
 import { createNPCsFromMapData } from '../game/NPC';
 import { Pokemon } from '../game/Pokemon';
+import { GameConfig } from '../game/GameConfig';
 
 // Import map data
 import newBarkTownData from '../assets/data/maps/new-bark-town.json';
@@ -15,7 +16,7 @@ export default class OverworldScene extends Phaser.Scene {
     super({ key: 'OverworldScene' });
     this.mapLoader = null;
     this.dialogueSystem = null;
-    this.playerSpeed = 80;
+    this.playerSpeed = GameConfig.player.speed;
     this.currentMapId = 'new-bark-town';
     this.maps = {
       'new-bark-town': newBarkTownData,
@@ -24,7 +25,7 @@ export default class OverworldScene extends Phaser.Scene {
     };
     this.npcs = [];
     this.lastGrassStep = 0;
-    this.wildEncounterRate = 0.1; // 10% chance per step in tall grass
+    this.wildEncounterRate = GameConfig.wildEncounter.rate;
     this.facingDirection = 'down';
   }
 
@@ -74,14 +75,14 @@ export default class OverworldScene extends Phaser.Scene {
   createPlayer() {
     const mapData = this.maps[this.currentMapId];
     const spawnPoint = mapData.spawnPoint;
-    const tileSize = mapData.tileSize || 16;
+    const tileSize = mapData.tileSize || GameConfig.map.defaultTileSize;
     
     // Create player sprite (colored rectangle for now)
     this.player = this.add.rectangle(
       spawnPoint.x * tileSize + tileSize / 2,
       spawnPoint.y * tileSize + tileSize / 2,
-      14,
-      14,
+      GameConfig.player.size,
+      GameConfig.player.size,
       0x00ff00
     );
     this.player.setDepth(10);
@@ -91,8 +92,13 @@ export default class OverworldScene extends Phaser.Scene {
     this.player.body.setCollideWorldBounds(true);
     
     // Camera follows player
-    this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
-    this.cameras.main.setZoom(2);
+    this.cameras.main.startFollow(
+      this.player, 
+      true, 
+      GameConfig.camera.lerpX, 
+      GameConfig.camera.lerpY
+    );
+    this.cameras.main.setZoom(GameConfig.camera.zoom);
   }
 
   setupCollision() {
@@ -237,7 +243,7 @@ export default class OverworldScene extends Phaser.Scene {
     
     // Throttle encounter checks
     const now = this.time.now;
-    if (now - this.lastGrassStep < 500) return;
+    if (now - this.lastGrassStep < GameConfig.wildEncounter.throttleMs) return;
     this.lastGrassStep = now;
     
     // Random encounter check

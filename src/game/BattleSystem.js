@@ -1,3 +1,5 @@
+import { GameConfig } from './GameConfig';
+
 /**
  * Battle System - Handles turn-based Pokemon battles
  */
@@ -12,14 +14,25 @@ export class BattleSystem {
   }
 
   calculateDamage(attacker, defender, move) {
-    // Simplified damage calculation
+    // Pokemon damage formula: ((2L/5 + 2) * A * P / D / 50 + 2) * M
+    const { battle } = GameConfig;
     const level = attacker.level;
     const attack = attacker.stats.attack;
     const defense = defender.stats.defense;
     const basePower = move.power || 50;
 
-    const damage = Math.floor(((2 * level + 10) / 250 * attack / defense * basePower + 2) * (Math.random() * 0.15 + 0.85));
-    return Math.max(1, damage);
+    // Calculate level factor: (2 * level + 10) / 250
+    const levelFactor = (battle.levelMultiplier * level + 10) / battle.levelDivisor;
+    
+    // Calculate random modifier between 0.85 and 1.0
+    const randomModifier = Math.random() * battle.damageRandomRange + battle.damageRandomMin;
+    
+    // Final damage calculation
+    const damage = Math.floor(
+      (levelFactor * attack / defense * basePower + battle.baseDamage) * randomModifier
+    );
+    
+    return Math.max(battle.minDamage, damage);
   }
 
   playerAttack(moveIndex) {

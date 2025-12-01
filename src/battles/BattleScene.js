@@ -5,6 +5,7 @@
 
 import { CONFIG } from '../config.js';
 import { BattleSystem } from './BattleSystem.js';
+import { SpriteManager } from '../graphics/SpriteManager.js';
 
 export class BattleScene {
   constructor(game, playerPokemon, wildPokemon) {
@@ -13,6 +14,7 @@ export class BattleScene {
     this.enemyTeam = Array.isArray(wildPokemon) ? wildPokemon : [wildPokemon];
     
     this.battleSystem = new BattleSystem(this.playerTeam, this.enemyTeam);
+    this.spriteManager = new SpriteManager();
     
     this.currentMenuState = 'action'; // 'action', 'move', 'switch', 'waiting'
     this.selectedAction = 0;
@@ -22,11 +24,17 @@ export class BattleScene {
     this.battleOver = false;
     this.waitingForEnemyTurn = false; // Track if we're waiting for enemy turn
     
+    // Sprite tracking
+    this.playerSprite = null;
+    this.enemySprite = null;
+    this.spritesLoading = true;
+    
     // Input tracking to prevent rapid repeated inputs
     this.lastInputTime = 0;
     this.inputDelay = 200; // ms between inputs
     
     this.addBattleLog(`A wild ${this.battleSystem.enemyActive.name} appeared!`);
+    this.loadBattleSprites();
     console.log('⚔️ Battle Scene initialized');
   }
 
@@ -218,6 +226,26 @@ export class BattleScene {
   }
 
   /**
+   * Load sprites for battle Pokemon
+   */
+  async loadBattleSprites() {
+    try {
+      // Load player sprite (back view) and enemy sprite (front view)
+      const playerName = this.battleSystem.playerActive.species || this.battleSystem.playerActive.name.toLowerCase();
+      const enemyName = this.battleSystem.enemyActive.species || this.battleSystem.enemyActive.name.toLowerCase();
+      
+      this.playerSprite = await this.spriteManager.loadSprite(playerName, 'back');
+      this.enemySprite = await this.spriteManager.loadSprite(enemyName, 'front');
+      
+      this.spritesLoading = false;
+      console.log('✅ Battle sprites loaded successfully');
+    } catch (error) {
+      console.warn('Failed to load battle sprites:', error);
+      this.spritesLoading = false;
+    }
+  }
+
+  /**
    * Render battle scene
    */
   render(ctx) {
@@ -253,6 +281,11 @@ export class BattleScene {
     const x = CONFIG.canvas.width - 80;
     const y = 10;
 
+    // Draw enemy sprite if available
+    if (this.enemySprite && !this.spritesLoading) {
+      this.spriteManager.drawSprite(ctx, this.enemySprite, CONFIG.canvas.width - 50, 50, 2);
+    }
+
     // Name and level
     ctx.fillStyle = '#ffffff';
     ctx.font = '12px Arial';
@@ -283,6 +316,11 @@ export class BattleScene {
     // Position: bottom-left
     const x = 10;
     const y = CONFIG.canvas.height - 50;
+
+    // Draw player sprite if available
+    if (this.playerSprite && !this.spritesLoading) {
+      this.spriteManager.drawSprite(ctx, this.playerSprite, 50, CONFIG.canvas.height - 70, 2);
+    }
 
     // Name and level
     ctx.fillStyle = '#ffffff';

@@ -1,9 +1,16 @@
 /**
  * Pokemon Database
  * Stats, types, moves for all Pokemon
+ * Complete Gen I-III database
  */
 
-export const POKEMON = {
+import { POKEMON_COMPLETE } from './pokemon-complete.js';
+
+// Re-export the complete database as the primary POKEMON object
+export const POKEMON = POKEMON_COMPLETE;
+
+// Keep legacy export for compatibility
+export const POKEMON_LEGACY = {
   // Johto starters
   chikorita: {
     id: 152,

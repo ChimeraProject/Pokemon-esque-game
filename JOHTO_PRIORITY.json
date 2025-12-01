@@ -1,0 +1,1150 @@
+{
+  "gameRegion": "Johto",
+  "totalPokemon": 251,
+  "generation": "Gen I-III",
+  "startingArea": "New Bark Town",
+  "locations": [
+    {
+      "id": 1,
+      "name": "New Bark Town",
+      "type": "town",
+      "priority": "1",
+      "tileWidth": 15,
+      "tileHeight": 10,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Professor Elm",
+          "role": "starter-giver",
+          "quest": "receive-starter"
+        },
+        {
+          "name": "Mom",
+          "role": "npc",
+          "dialogue": "default"
+        }
+      ],
+      "connections": ["Route 29"]
+    },
+    {
+      "id": 2,
+      "name": "Route 29",
+      "type": "route",
+      "priority": "1",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "pidgeot", "level": [3, 6], "rate": 0.30},
+        {"species": "rattata", "level": [2, 5], "rate": 0.40},
+        {"species": "sentret", "level": [3, 6], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Youngster Joey",
+          "role": "trainer",
+          "team": ["rattata"],
+          "levels": [5],
+          "rewards": {
+            "money": 50,
+            "exp": 100
+          }
+        },
+        {
+          "name": "Lass Liz",
+          "role": "trainer",
+          "team": ["pidgeot", "pidgeot"],
+          "levels": [5, 6],
+          "rewards": {
+            "money": 60,
+            "exp": 120
+          }
+        }
+      ],
+      "connections": ["New Bark Town", "Cherrygrove City", "Route 30"]
+    },
+    {
+      "id": 3,
+      "name": "Cherrygrove City",
+      "type": "city",
+      "priority": "1",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Mr. Pokemon",
+          "role": "npc",
+          "dialogue": "give-egg"
+        }
+      ],
+      "connections": ["Route 29", "Route 31"]
+    },
+    {
+      "id": 4,
+      "name": "Route 30",
+      "type": "route",
+      "priority": "1",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "pidgeot", "level": [3, 7], "rate": 0.30},
+        {"species": "rattata", "level": [2, 6], "rate": 0.30},
+        {"species": "sentret", "level": [3, 7], "rate": 0.25},
+        {"species": "hoothoot", "level": [3, 7], "rate": 0.15}
+      ],
+      "trainers": [
+        {
+          "name": "Lass Ally",
+          "role": "trainer",
+          "team": ["pidgeot", "pidgeot"],
+          "levels": [6, 7],
+          "rewards": {"money": 70, "exp": 140}
+        }
+      ],
+      "connections": ["Route 29", "Route 31", "Dark Cave"]
+    },
+    {
+      "id": 5,
+      "name": "Route 31",
+      "type": "route",
+      "priority": "1",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "pidgeot", "level": [3, 8], "rate": 0.25},
+        {"species": "rattata", "level": [2, 8], "rate": 0.30},
+        {"species": "sentret", "level": [3, 8], "rate": 0.25},
+        {"species": "hoothoot", "level": [3, 8], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Youngster Tyler",
+          "role": "trainer",
+          "team": ["rattata", "sentret"],
+          "levels": [7, 8],
+          "rewards": {"money": 80, "exp": 160}
+        }
+      ],
+      "connections": ["Cherrygrove City", "Route 30", "Violet City"]
+    },
+    {
+      "id": 6,
+      "name": "Violet City",
+      "type": "city",
+      "priority": "2",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Falkner",
+          "role": "gym-leader",
+          "type": "flying",
+          "team": ["pidgeot", "pidgeot", "pidgeot"],
+          "levels": [12, 13, 14],
+          "badge": "Zephyr Badge",
+          "rewards": {"money": 840, "exp": 1680}
+        }
+      ],
+      "connections": ["Route 31", "Route 32", "Route 45"]
+    },
+    {
+      "id": 7,
+      "name": "Route 32",
+      "type": "route",
+      "priority": "2",
+      "tileWidth": 25,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "rattata", "level": [4, 9], "rate": 0.20},
+        {"species": "sentret", "level": [4, 9], "rate": 0.20},
+        {"species": "hoothoot", "level": [4, 9], "rate": 0.20},
+        {"species": "pidgeot", "level": [4, 9], "rate": 0.20},
+        {"species": "spinarak", "level": [5, 10], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Youngster Gordon",
+          "role": "trainer",
+          "team": ["hoothoot", "spinarak"],
+          "levels": [9, 10],
+          "rewards": {"money": 100, "exp": 200}
+        }
+      ],
+      "connections": ["Violet City", "Union Cave", "Azalea Town"]
+    },
+    {
+      "id": 8,
+      "name": "Dark Cave",
+      "type": "cave",
+      "priority": "2",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [
+        {"species": "zubat", "level": [4, 9], "rate": 0.40},
+        {"species": "geodude", "level": [5, 10], "rate": 0.30},
+        {"species": "dunsparce", "level": [5, 10], "rate": 0.30}
+      ],
+      "trainers": [],
+      "connections": ["Route 30", "Route 46"]
+    },
+    {
+      "id": 9,
+      "name": "Union Cave",
+      "type": "cave",
+      "priority": "2",
+      "tileWidth": 18,
+      "tileHeight": 12,
+      "wildPokemon": [
+        {"species": "zubat", "level": [5, 12], "rate": 0.40},
+        {"species": "goldeen", "level": [5, 12], "rate": 0.30},
+        {"species": "quagsire", "level": [6, 13], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Daniel",
+          "role": "trainer",
+          "team": ["geodude", "geodude", "onix"],
+          "levels": [11, 12, 13],
+          "rewards": {"money": 240, "exp": 480}
+        }
+      ],
+      "connections": ["Route 32", "Azalea Town"]
+    },
+    {
+      "id": 10,
+      "name": "Azalea Town",
+      "type": "city",
+      "priority": "2",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Bugsy",
+          "role": "gym-leader",
+          "type": "bug",
+          "team": ["scyther", "scizor", "heracross"],
+          "levels": [16, 17, 18],
+          "badge": "Hive Badge",
+          "rewards": {"money": 1260, "exp": 2520}
+        }
+      ],
+      "connections": ["Union Cave", "Route 32", "Route 33", "Ilex Forest"]
+    },
+    {
+      "id": 11,
+      "name": "Ilex Forest",
+      "type": "forest",
+      "priority": "2",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "caterpie", "level": [3, 12], "rate": 0.25},
+        {"species": "metapod", "level": [5, 15], "rate": 0.15},
+        {"species": "weedle", "level": [3, 12], "rate": 0.25},
+        {"species": "kakuna", "level": [5, 15], "rate": 0.15},
+        {"species": "pidgeot", "level": [5, 15], "rate": 0.20}
+      ],
+      "trainers": [],
+      "connections": ["Azalea Town", "Route 34"]
+    },
+    {
+      "id": 12,
+      "name": "Route 33",
+      "type": "route",
+      "priority": "2",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "hoothoot", "level": [6, 15], "rate": 0.20},
+        {"species": "geodude", "level": [6, 15], "rate": 0.30},
+        {"species": "onix", "level": [8, 15], "rate": 0.20},
+        {"species": "phanpy", "level": [8, 15], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Trent",
+          "role": "trainer",
+          "team": ["onix", "geodude", "onix"],
+          "levels": [14, 15, 16],
+          "rewards": {"money": 300, "exp": 600}
+        }
+      ],
+      "connections": ["Azalea Town", "Route 34"]
+    },
+    {
+      "id": 13,
+      "name": "Route 34",
+      "type": "route",
+      "priority": "2",
+      "tileWidth": 25,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "bellsprout", "level": [5, 16], "rate": 0.25},
+        {"species": "weepinbell", "level": [8, 18], "rate": 0.15},
+        {"species": "mankey", "level": [6, 16], "rate": 0.25},
+        {"species": "growlithe", "level": [7, 17], "rate": 0.20},
+        {"species": "pidgeot", "level": [8, 18], "rate": 0.15}
+      ],
+      "trainers": [
+        {
+          "name": "School Kid Alan",
+          "role": "trainer",
+          "team": ["growlithe", "pikachu"],
+          "levels": [16, 17],
+          "rewards": {"money": 170, "exp": 340}
+        }
+      ],
+      "connections": ["Ilex Forest", "Goldenrod City"]
+    },
+    {
+      "id": 14,
+      "name": "Goldenrod City",
+      "type": "city",
+      "priority": "3",
+      "tileWidth": 18,
+      "tileHeight": 14,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Whitney",
+          "role": "gym-leader",
+          "type": "normal",
+          "team": ["miltank"],
+          "levels": [20],
+          "badge": "Plain Badge",
+          "rewards": {"money": 1500, "exp": 3000}
+        }
+      ],
+      "connections": ["Route 34", "Route 35", "Route 36", "Route 37", "Goldenrod Dept Store"]
+    },
+    {
+      "id": 15,
+      "name": "Route 35",
+      "type": "route",
+      "priority": "3",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "growlithe", "level": [10, 20], "rate": 0.20},
+        {"species": "mankey", "level": [10, 20], "rate": 0.25},
+        {"species": "pidgeot", "level": [12, 22], "rate": 0.25},
+        {"species": "girafarig", "level": [15, 25], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Lass Annie",
+          "role": "trainer",
+          "team": ["growlithe", "growlithe", "arcanine"],
+          "levels": [19, 20, 21],
+          "rewards": {"money": 210, "exp": 420}
+        }
+      ],
+      "connections": ["Goldenrod City", "Route 36"]
+    },
+    {
+      "id": 16,
+      "name": "Route 36",
+      "type": "route",
+      "priority": "3",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "growlithe", "level": [10, 20], "rate": 0.25},
+        {"species": "pidgeot", "level": [12, 22], "rate": 0.30},
+        {"species": "tauros", "level": [15, 25], "rate": 0.25},
+        {"species": "mareep", "level": [13, 23], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Youngster Mikey",
+          "role": "trainer",
+          "team": ["pidgeot", "tauros", "pidgeot"],
+          "levels": [20, 21, 22],
+          "rewards": {"money": 220, "exp": 440}
+        }
+      ],
+      "connections": ["Goldenrod City", "National Park", "Route 37"]
+    },
+    {
+      "id": 17,
+      "name": "National Park",
+      "type": "park",
+      "priority": "3",
+      "tileWidth": 22,
+      "tileHeight": 16,
+      "wildPokemon": [
+        {"species": "caterpie", "level": [10, 20], "rate": 0.20},
+        {"species": "weedle", "level": [10, 20], "rate": 0.20},
+        {"species": "butterfree", "level": [13, 23], "rate": 0.20},
+        {"species": "beedrill", "level": [13, 23], "rate": 0.20},
+        {"species": "pidgeot", "level": [15, 25], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Bug Catcher Robert",
+          "role": "trainer",
+          "team": ["butterfree", "beedrill", "scyther"],
+          "levels": [21, 22, 23],
+          "rewards": {"money": 230, "exp": 460}
+        }
+      ],
+      "connections": ["Route 36", "Route 37"]
+    },
+    {
+      "id": 18,
+      "name": "Route 37",
+      "type": "route",
+      "priority": "3",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "growlithe", "level": [11, 21], "rate": 0.25},
+        {"species": "pidgeot", "level": [13, 23], "rate": 0.25},
+        {"species": "tauros", "level": [15, 25], "rate": 0.25},
+        {"species": "mareep", "level": [14, 24], "rate": 0.25}
+      ],
+      "trainers": [
+        {
+          "name": "Lass Ivy",
+          "role": "trainer",
+          "team": ["mareep", "flaaffy", "ampharos"],
+          "levels": [22, 23, 24],
+          "rewards": {"money": 240, "exp": 480}
+        }
+      ],
+      "connections": ["National Park", "Goldenrod City", "Ecruteak City"]
+    },
+    {
+      "id": 19,
+      "name": "Ecruteak City",
+      "type": "city",
+      "priority": "3",
+      "tileWidth": 16,
+      "tileHeight": 14,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Morty",
+          "role": "gym-leader",
+          "type": "ghost",
+          "team": ["gengar", "misdreavus", "gengar"],
+          "levels": [27, 28, 29],
+          "badge": "Fog Badge",
+          "rewards": {"money": 2100, "exp": 4200}
+        }
+      ],
+      "connections": ["Route 37", "Route 38", "Route 39", "Burned Tower"]
+    },
+    {
+      "id": 20,
+      "name": "Burned Tower",
+      "type": "tower",
+      "priority": "3",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [
+        {"species": "litwick", "level": [15, 25], "rate": 0.40},
+        {"species": "lampent", "level": [18, 28], "rate": 0.30},
+        {"species": "ponyta", "level": [16, 26], "rate": 0.30}
+      ],
+      "trainers": [],
+      "connections": ["Ecruteak City"]
+    },
+    {
+      "id": 21,
+      "name": "Route 38",
+      "type": "route",
+      "priority": "3",
+      "tileWidth": 25,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "growlithe", "level": [15, 28], "rate": 0.25},
+        {"species": "tauros", "level": [17, 30], "rate": 0.25},
+        {"species": "pidgeot", "level": [17, 30], "rate": 0.20},
+        {"species": "miltank", "level": [18, 31], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Cowgirl Liz",
+          "role": "trainer",
+          "team": ["miltank", "miltank", "tauros"],
+          "levels": [28, 29, 30],
+          "rewards": {"money": 300, "exp": 600}
+        }
+      ],
+      "connections": ["Ecruteak City", "Olivine City"]
+    },
+    {
+      "id": 22,
+      "name": "Route 39",
+      "type": "route",
+      "priority": "3",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "tauros", "level": [17, 30], "rate": 0.30},
+        {"species": "miltank", "level": [18, 31], "rate": 0.30},
+        {"species": "pidgeot", "level": [17, 30], "rate": 0.20},
+        {"species": "rapidash", "level": [20, 33], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Cowgirl Marnie",
+          "role": "trainer",
+          "team": ["rapidash", "rapidash"],
+          "levels": [30, 31],
+          "rewards": {"money": 310, "exp": 620}
+        }
+      ],
+      "connections": ["Ecruteak City", "Olivine City"]
+    },
+    {
+      "id": 23,
+      "name": "Olivine City",
+      "type": "city",
+      "priority": "3",
+      "tileWidth": 16,
+      "tileHeight": 14,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Jasmine",
+          "role": "gym-leader",
+          "type": "steel",
+          "team": ["steelix", "steel-type", "magneton"],
+          "levels": [30, 31, 32],
+          "badge": "Mineral Badge",
+          "rewards": {"money": 2400, "exp": 4800}
+        }
+      ],
+      "connections": ["Route 38", "Route 39", "Route 40", "Lighthouse"]
+    },
+    {
+      "id": 24,
+      "name": "Lighthouse",
+      "type": "tower",
+      "priority": "3",
+      "tileWidth": 12,
+      "tileHeight": 20,
+      "wildPokemon": [
+        {"species": "mareep", "level": [15, 30], "rate": 0.40},
+        {"species": "flaaffy", "level": [18, 33], "rate": 0.30},
+        {"species": "ampharos", "level": [20, 35], "rate": 0.30}
+      ],
+      "trainers": [],
+      "connections": ["Olivine City"]
+    },
+    {
+      "id": 25,
+      "name": "Route 40",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "shellder", "level": [20, 35], "rate": 0.40},
+        {"species": "cloyster", "level": [25, 40], "rate": 0.20},
+        {"species": "krabby", "level": [20, 35], "rate": 0.40}
+      ],
+      "trainers": [
+        {
+          "name": "Swimmer Dawn",
+          "role": "trainer",
+          "team": ["lapras", "lapras", "blastoise"],
+          "levels": [32, 33, 34],
+          "rewards": {"money": 400, "exp": 800}
+        }
+      ],
+      "connections": ["Olivine City", "Route 41"]
+    },
+    {
+      "id": 26,
+      "name": "Route 41",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 25,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "shellder", "level": [20, 35], "rate": 0.35},
+        {"species": "krabby", "level": [20, 35], "rate": 0.35},
+        {"species": "tentacool", "level": [18, 33], "rate": 0.30}
+      ],
+      "trainers": [
+        {
+          "name": "Swimmer Cody",
+          "role": "trainer",
+          "team": ["golduck", "lapras", "vaporeon"],
+          "levels": [33, 34, 35],
+          "rewards": {"money": 420, "exp": 840}
+        }
+      ],
+      "connections": ["Route 40", "Cianwood City"]
+    },
+    {
+      "id": 27,
+      "name": "Cianwood City",
+      "type": "city",
+      "priority": "4",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Chuck",
+          "role": "gym-leader",
+          "type": "fighting",
+          "team": ["primeape", "machamp", "poliwrath"],
+          "levels": [33, 34, 35],
+          "badge": "Storm Badge",
+          "rewards": {"money": 2700, "exp": 5400}
+        }
+      ],
+      "connections": ["Route 41", "Route 42"]
+    },
+    {
+      "id": 28,
+      "name": "Route 42",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 25,
+      "tileHeight": 20,
+      "wildPokemon": [
+        {"species": "mankey", "level": [15, 33], "rate": 0.25},
+        {"species": "primeape", "level": [20, 38], "rate": 0.20},
+        {"species": "growlithe", "level": [16, 34], "rate": 0.25},
+        {"species": "arcanine", "level": [20, 38], "rate": 0.20},
+        {"species": "ponyta", "level": [17, 35], "rate": 0.10}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Anthony",
+          "role": "trainer",
+          "team": ["onix", "rhyhorn", "macargo"],
+          "levels": [34, 35, 36],
+          "rewards": {"money": 500, "exp": 1000}
+        }
+      ],
+      "connections": ["Cianwood City", "Mt. Mortar", "Mahogany Town"]
+    },
+    {
+      "id": 29,
+      "name": "Mt. Mortar",
+      "type": "mountain",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 18,
+      "wildPokemon": [
+        {"species": "mankey", "level": [15, 33], "rate": 0.25},
+        {"species": "primeape", "level": [18, 36], "rate": 0.20},
+        {"species": "geodude", "level": [16, 34], "rate": 0.30},
+        {"species": "graveler", "level": [18, 36], "rate": 0.25}
+      ],
+      "trainers": [],
+      "connections": ["Route 42", "Route 43"]
+    },
+    {
+      "id": 30,
+      "name": "Route 43",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "pidgeot", "level": [18, 36], "rate": 0.25},
+        {"species": "girafarig", "level": [18, 36], "rate": 0.25},
+        {"species": "tauros", "level": [18, 36], "rate": 0.25},
+        {"species": "flaaffy", "level": [20, 38], "rate": 0.25}
+      ],
+      "trainers": [
+        {
+          "name": "Lass Dana",
+          "role": "trainer",
+          "team": ["ampharos", "ampharos", "pikachu"],
+          "levels": [36, 37, 38],
+          "rewards": {"money": 380, "exp": 760}
+        }
+      ],
+      "connections": ["Mt. Mortar", "Mahogany Town"]
+    },
+    {
+      "id": 31,
+      "name": "Mahogany Town",
+      "type": "city",
+      "priority": "4",
+      "tileWidth": 15,
+      "tileHeight": 12,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Pryce",
+          "role": "gym-leader",
+          "type": "ice",
+          "team": ["piloswine", "dewgong", "lapras"],
+          "levels": [37, 38, 39],
+          "badge": "Glacier Badge",
+          "rewards": {"money": 3000, "exp": 6000}
+        }
+      ],
+      "connections": ["Route 43", "Route 44", "Route 45"]
+    },
+    {
+      "id": 32,
+      "name": "Route 44",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 20,
+      "wildPokemon": [
+        {"species": "poliwag", "level": [20, 38], "rate": 0.25},
+        {"species": "poliwrath", "level": [25, 43], "rate": 0.15},
+        {"species": "slowbro", "level": [25, 43], "rate": 0.10},
+        {"species": "goldeen", "level": [20, 38], "rate": 0.25},
+        {"species": "seaking", "level": [25, 43], "rate": 0.25}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Clark",
+          "role": "trainer",
+          "team": ["machoke", "machamp"],
+          "levels": [38, 39],
+          "rewards": {"money": 540, "exp": 1080}
+        }
+      ],
+      "connections": ["Mahogany Town", "Lake of Rage"]
+    },
+    {
+      "id": 33,
+      "name": "Lake of Rage",
+      "type": "lake",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "krabby", "level": [20, 40], "rate": 0.30},
+        {"species": "kingler", "level": [25, 45], "rate": 0.15},
+        {"species": "shellder", "level": [20, 40], "rate": 0.30},
+        {"species": "goldeen", "level": [20, 40], "rate": 0.25}
+      ],
+      "trainers": [
+        {
+          "name": "Rocket Executive Larry",
+          "role": "trainer",
+          "team": ["ariados", "houndoom", "weezing"],
+          "levels": [38, 39, 40],
+          "rewards": {"money": 600, "exp": 1200}
+        }
+      ],
+      "connections": ["Route 44", "Route 45"]
+    },
+    {
+      "id": 34,
+      "name": "Route 45",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 25,
+      "tileHeight": 25,
+      "wildPokemon": [
+        {"species": "mankey", "level": [20, 40], "rate": 0.20},
+        {"species": "primeape", "level": [25, 45], "rate": 0.15},
+        {"species": "machop", "level": [22, 42], "rate": 0.25},
+        {"species": "machoke", "level": [25, 45], "rate": 0.20},
+        {"species": "graveler", "level": [20, 40], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Geoff",
+          "role": "trainer",
+          "team": ["machoke", "graveler", "machamp"],
+          "levels": [39, 40, 41],
+          "rewards": {"money": 600, "exp": 1200}
+        }
+      ],
+      "connections": ["Mahogany Town", "Lake of Rage", "Blackthorn City"]
+    },
+    {
+      "id": 35,
+      "name": "Blackthorn City",
+      "type": "city",
+      "priority": "4",
+      "tileWidth": 16,
+      "tileHeight": 14,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Clair",
+          "role": "gym-leader",
+          "type": "dragon",
+          "team": ["dragonair", "dragonite", "dragonite"],
+          "levels": [41, 42, 43],
+          "badge": "Rising Badge",
+          "rewards": {"money": 3300, "exp": 6600}
+        }
+      ],
+      "connections": ["Route 45", "Route 46", "Dragon's Den"]
+    },
+    {
+      "id": 36,
+      "name": "Dragon's Den",
+      "type": "cave",
+      "priority": "4",
+      "tileWidth": 18,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "dratini", "level": [25, 40], "rate": 0.40},
+        {"species": "dragonair", "level": [30, 45], "rate": 0.30},
+        {"species": "bagon", "level": [32, 47], "rate": 0.30}
+      ],
+      "trainers": [],
+      "connections": ["Blackthorn City"]
+    },
+    {
+      "id": 37,
+      "name": "Route 46",
+      "type": "route",
+      "priority": "4",
+      "tileWidth": 20,
+      "tileHeight": 15,
+      "wildPokemon": [
+        {"species": "geodude", "level": [15, 35], "rate": 0.30},
+        {"species": "graveler", "level": [20, 40], "rate": 0.20},
+        {"species": "phanpy", "level": [18, 38], "rate": 0.30},
+        {"species": "donphan", "level": [23, 43], "rate": 0.20}
+      ],
+      "trainers": [
+        {
+          "name": "Hiker Abe",
+          "role": "trainer",
+          "team": ["graveler", "donphan"],
+          "levels": [40, 41],
+          "rewards": {"money": 580, "exp": 1160}
+        }
+      ],
+      "connections": ["Dark Cave", "Blackthorn City"]
+    },
+    {
+      "id": 38,
+      "name": "Mt. Silver",
+      "type": "mountain",
+      "priority": "5",
+      "tileWidth": 25,
+      "tileHeight": 25,
+      "wildPokemon": [
+        {"species": "onix", "level": [40, 50], "rate": 0.25},
+        {"species": "steelix", "level": [42, 52], "rate": 0.20},
+        {"species": "graveler", "level": [40, 50], "rate": 0.25},
+        {"species": "rhyhorn", "level": [40, 50], "rate": 0.15},
+        {"species": "rhydon", "level": [42, 52], "rate": 0.15}
+      ],
+      "trainers": [
+        {
+          "name": "Red (Champion)",
+          "role": "boss",
+          "team": ["pikachu", "charizard", "venusaur", "blastoise", "lapras", "snorlax"],
+          "levels": [81, 82, 82, 82, 82, 83],
+          "rewards": {"money": 9999, "exp": 99999}
+        }
+      ],
+      "connections": ["Blackthorn City"]
+    },
+    {
+      "id": 39,
+      "name": "Pokemon League",
+      "type": "league",
+      "priority": "5",
+      "tileWidth": 20,
+      "tileHeight": 20,
+      "wildPokemon": [],
+      "npcs": [
+        {
+          "name": "Will",
+          "role": "elite-four",
+          "type": "psychic",
+          "team": ["xatu", "jynx", "exeggutor"],
+          "levels": [40, 41, 42],
+          "rewards": {"money": 3000, "exp": 6000}
+        },
+        {
+          "name": "Koga",
+          "role": "elite-four",
+          "type": "poison",
+          "team": ["muk", "weezing", "tentacruel"],
+          "levels": [40, 41, 42],
+          "rewards": {"money": 3000, "exp": 6000}
+        },
+        {
+          "name": "Bruno",
+          "role": "elite-four",
+          "type": "fighting",
+          "team": ["machamp", "hitmonlee", "hitmonchan"],
+          "levels": [40, 41, 42],
+          "rewards": {"money": 3000, "exp": 6000}
+        },
+        {
+          "name": "Karen",
+          "role": "elite-four",
+          "type": "dark",
+          "team": ["umbreon", "houndoom", "gengar"],
+          "levels": [40, 41, 42],
+          "rewards": {"money": 3000, "exp": 6000}
+        },
+        {
+          "name": "Lance (Champion)",
+          "role": "champion",
+          "type": "dragon",
+          "team": ["dragonite", "dragonite", "dragonite", "dragonite", "dragonite", "gyarados"],
+          "levels": [46, 47, 48, 49, 50, 50],
+          "rewards": {"money": 9999, "exp": 99999}
+        }
+      ],
+      "connections": ["Mt. Silver"]
+    }
+  ],
+  "questline": {
+    "mainQuests": [
+      {
+        "id": "q1",
+        "name": "Choose Your Starter",
+        "giver": "Professor Elm",
+        "location": "New Bark Town",
+        "description": "Receive a starter Pokemon from Professor Elm",
+        "reward": "Starter Pokemon",
+        "prerequisites": []
+      },
+      {
+        "id": "q2",
+        "name": "Get an Egg from Mr. Pokemon",
+        "giver": "Mr. Pokemon",
+        "location": "Cherrygrove City",
+        "description": "Travel to Cherrygrove City and receive a mystery egg",
+        "reward": "Pokemon Egg",
+        "prerequisites": ["q1"]
+      },
+      {
+        "id": "q3",
+        "name": "Defeat Falkner",
+        "giver": "Gym Leader",
+        "location": "Violet City",
+        "description": "Defeat Falkner to earn the Zephyr Badge",
+        "reward": "Zephyr Badge + 840 money",
+        "prerequisites": ["q1"]
+      },
+      {
+        "id": "q4",
+        "name": "Defeat Bugsy",
+        "giver": "Gym Leader",
+        "location": "Azalea Town",
+        "description": "Defeat Bugsy to earn the Hive Badge",
+        "reward": "Hive Badge + 1260 money",
+        "prerequisites": ["q3"]
+      },
+      {
+        "id": "q5",
+        "name": "Defeat Whitney",
+        "giver": "Gym Leader",
+        "location": "Goldenrod City",
+        "description": "Defeat Whitney to earn the Plain Badge",
+        "reward": "Plain Badge + 1500 money",
+        "prerequisites": ["q4"]
+      },
+      {
+        "id": "q6",
+        "name": "Defeat Morty",
+        "giver": "Gym Leader",
+        "location": "Ecruteak City",
+        "description": "Defeat Morty to earn the Fog Badge",
+        "reward": "Fog Badge + 2100 money",
+        "prerequisites": ["q5"]
+      },
+      {
+        "id": "q7",
+        "name": "Defeat Jasmine",
+        "giver": "Gym Leader",
+        "location": "Olivine City",
+        "description": "Defeat Jasmine to earn the Mineral Badge",
+        "reward": "Mineral Badge + 2400 money",
+        "prerequisites": ["q6"]
+      },
+      {
+        "id": "q8",
+        "name": "Defeat Chuck",
+        "giver": "Gym Leader",
+        "location": "Cianwood City",
+        "description": "Defeat Chuck to earn the Storm Badge",
+        "reward": "Storm Badge + 2700 money",
+        "prerequisites": ["q7"]
+      },
+      {
+        "id": "q9",
+        "name": "Defeat Pryce",
+        "giver": "Gym Leader",
+        "location": "Mahogany Town",
+        "description": "Defeat Pryce to earn the Glacier Badge",
+        "reward": "Glacier Badge + 3000 money",
+        "prerequisites": ["q8"]
+      },
+      {
+        "id": "q10",
+        "name": "Defeat Clair",
+        "giver": "Gym Leader",
+        "location": "Blackthorn City",
+        "description": "Defeat Clair to earn the Rising Badge",
+        "reward": "Rising Badge + 3300 money",
+        "prerequisites": ["q9"]
+      },
+      {
+        "id": "q11",
+        "name": "Challenge the Elite Four",
+        "giver": "Champion Lance",
+        "location": "Pokemon League",
+        "description": "Defeat the Elite Four and Champion Lance to become champion",
+        "reward": "Champion Title + 9999 money",
+        "prerequisites": ["q10"]
+      },
+      {
+        "id": "q12",
+        "name": "Challenge Red",
+        "giver": "Red",
+        "location": "Mt. Silver",
+        "description": "Optional: Challenge the legendary trainer Red on Mt. Silver",
+        "reward": "Bragging Rights + Rare Pokemon",
+        "prerequisites": ["q11"]
+      }
+    ],
+    "sideQuests": [
+      {
+        "id": "sq1",
+        "name": "Rival Battle - Route 29",
+        "giver": "Your Rival",
+        "location": "Route 29",
+        "description": "Battle your rival early in the game",
+        "reward": "Exp + Items",
+        "prerequisites": ["q1"]
+      },
+      {
+        "id": "sq2",
+        "name": "Rival Battle - Route 32",
+        "giver": "Your Rival",
+        "location": "Route 32",
+        "description": "Rematch your rival to test your progress",
+        "reward": "Exp + Items",
+        "prerequisites": ["q3"]
+      }
+    ]
+  },
+  "npcs": [
+    {
+      "name": "Professor Elm",
+      "type": "important",
+      "location": "New Bark Town",
+      "dialogue": "Welcome! I am Professor Elm. I study Pokemon and their evolution.",
+      "role": "starter-giver"
+    },
+    {
+      "name": "Your Mom",
+      "type": "regular",
+      "location": "New Bark Town",
+      "dialogue": "Be careful out there, dear!"
+    },
+    {
+      "name": "Mr. Pokemon",
+      "type": "important",
+      "location": "Cherrygrove City",
+      "dialogue": "This is an amazing egg! I wonder what will hatch from it.",
+      "role": "egg-giver"
+    },
+    {
+      "name": "Your Rival",
+      "type": "boss",
+      "location": "Various Routes",
+      "dialogue": "Let's battle!",
+      "role": "rival"
+    }
+  ],
+  "pokemonGenerations": {
+    "Gen I (Kanto)": {
+      "species": 151,
+      "startId": 1,
+      "endId": 151,
+      "encountered": true,
+      "notes": "Original 151 Pokemon, available throughout Johto"
+    },
+    "Gen II (Johto)": {
+      "species": 100,
+      "startId": 152,
+      "endId": 251,
+      "encountered": true,
+      "notes": "New Pokemon from Johto region, main focus"
+    },
+    "Gen III (Hoenn)": {
+      "species": 135,
+      "startId": 252,
+      "endId": 386,
+      "encountered": "starters-only",
+      "notes": "Only Hoenn starters (Treecko, Torchic, Mudkip) available from gift/special encounters"
+    }
+  },
+  "featuresToImplement": [
+    {
+      "feature": "Map System",
+      "status": "in-progress",
+      "priority": "1",
+      "description": "Generate all 39 Johto locations with tile-based rendering"
+    },
+    {
+      "feature": "Pokemon Database Expansion",
+      "status": "in-progress",
+      "priority": "1",
+      "description": "Add all 251 Pokemon with correct stats, moves, evolutions"
+    },
+    {
+      "feature": "Move Database Expansion",
+      "status": "in-progress",
+      "priority": "1",
+      "description": "Add ~90 new Gen II moves + Gen III moves"
+    },
+    {
+      "feature": "Type System Expansion",
+      "status": "in-progress",
+      "priority": "1",
+      "description": "Add Steel (18) and Dark (19) types to the type chart"
+    },
+    {
+      "feature": "Gym Leader Battles",
+      "status": "pending",
+      "priority": "2",
+      "description": "8 Gym Leaders with teams, locations, and special battle logic"
+    },
+    {
+      "feature": "Elite Four & Champion",
+      "status": "pending",
+      "priority": "2",
+      "description": "5 Elite Four members + Champion Lance with full teams"
+    },
+    {
+      "feature": "Trainer Battle System",
+      "status": "pending",
+      "priority": "2",
+      "description": "Encounter wild trainers on routes with dialogue and teams"
+    },
+    {
+      "feature": "Questline/Story",
+      "status": "pending",
+      "priority": "3",
+      "description": "Professor Elm opening, Rival battles, progression tracking"
+    },
+    {
+      "feature": "Pokemon Evolutions",
+      "status": "pending",
+      "priority": "3",
+      "description": "Full evolution chains for all 251 Pokemon"
+    },
+    {
+      "feature": "Item/Pokéball System",
+      "status": "pending",
+      "priority": "3",
+      "description": "Catching Pokemon, inventory management"
+    }
+  ]
+}

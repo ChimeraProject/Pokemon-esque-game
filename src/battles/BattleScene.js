@@ -360,7 +360,7 @@ export class BattleScene {
   renderActionMenu(ctx) {
     const actions = ['Fight', 'Switch', 'Item', 'Run'];
     const x = 10;
-    const y = CONFIG.canvas.height - 60;
+    const y = CONFIG.canvas.height - 35;
     const buttonWidth = 50;
     const buttonHeight = 14;
     const padding = 2;
@@ -407,7 +407,7 @@ export class BattleScene {
   renderMoveMenu(ctx) {
     const pokemon = this.battleSystem.playerActive;
     const x = 10;
-    const y = CONFIG.canvas.height - 80;
+    const y = CONFIG.canvas.height - 100;
     const moveHeight = 16;
 
     const menuHeight = Math.min(pokemon.moves.length * moveHeight + 6, 70);
@@ -447,20 +447,21 @@ export class BattleScene {
   }
 
   /**
-   * Render battle log
+   * Render battle log (bottom of screen)
    */
   renderBattleLog(ctx) {
     const x = 10;
-    const y = 80;
+    const y = CONFIG.canvas.height - 95;
+    const logHeight = 55;
 
     ctx.fillStyle = '#444444';
-    ctx.fillRect(x - 2, y - 2, CONFIG.canvas.width - 20, 70);
+    ctx.fillRect(x - 2, y - 2, CONFIG.canvas.width - 20, logHeight);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = '11px Arial';
+    ctx.font = '10px Arial';
 
     for (let i = 0; i < this.battleLog.length; i++) {
-      ctx.fillText(this.battleLog[i], x, y + (i * 14) + 12);
+      ctx.fillText(this.battleLog[i], x + 4, y + (i * 13) + 11);
     }
   }
 

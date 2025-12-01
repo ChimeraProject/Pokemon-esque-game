@@ -1,0 +1,19 @@
+{
+  "name": "pokemon-esque-game",
+  "version": "1.0.0",
+  "description": "A Pokemon-style game built with JavaScript",
+  "main": "src/game.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -c-1",
+    "dev": "npx http-server . -p 8080 -c-1 -o"
+  },
+  "keywords": [
+    "pokemon",
+    "game",
+    "javascript",
+    "canvas"
+  ],
+  "author": "",
+  "license": "MIT"
+}

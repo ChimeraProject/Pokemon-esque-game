@@ -10,16 +10,17 @@ import { EncounterSystem } from '../encounters/EncounterSystem.js';
 import { NPCManager, NPC, Trainer } from '../npcs/NPC.js';
 
 export class OverworldScene {
-  constructor(game) {
+  constructor(game, isReturnFromBattle = false) {
     this.game = game;
     this.map = new Map();
     this.player = new Player(this.map);
     this.encounterSystem = new EncounterSystem();
     this.npcManager = new NPCManager();
     
-    // Prevent encounters for first few frames after startup
+    // Prevent encounters for first few frames after startup or after battle
+    // 180 frames = 3 seconds at 60fps - gives time for scene transition
     this.framesSinceStart = 0;
-    this.encountersEnabledAfter = 60; // 60 frames = ~1 second at 60fps
+    this.encountersEnabledAfter = isReturnFromBattle ? 180 : 60;
     
     // Initialize NPCs for the map
     this.initializeNPCs();

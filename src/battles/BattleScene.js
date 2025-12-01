@@ -6,6 +6,8 @@
 import { CONFIG } from '../config.js';
 import { BattleSystem } from './BattleSystem.js';
 import { SpriteManager } from '../graphics/SpriteManager.js';
+import { LevelingSystem } from '../systems/LevelingSystem.js';
+import { ExperienceSystem } from '../systems/ExperienceSystem.js';
 
 export class BattleScene {
   constructor(game, playerPokemon, wildPokemon) {
@@ -35,6 +37,19 @@ export class BattleScene {
     
     this.addBattleLog(`A wild ${this.battleSystem.enemyActive.name} appeared!`);
     this.loadBattleSprites();
+    
+    // Initialize Pokemon with stats if not already done
+    for (const pokemon of this.playerTeam) {
+      if (!pokemon.stats) {
+        LevelingSystem.initializePokemon(pokemon);
+      }
+    }
+    for (const pokemon of this.enemyTeam) {
+      if (!pokemon.stats) {
+        LevelingSystem.initializePokemon(pokemon);
+      }
+    }
+    
     console.log('⚔️ Battle Scene initialized');
   }
 
@@ -138,6 +153,9 @@ export class BattleScene {
     if (this.battleSystem.enemyActive.currentHp <= 0) {
       this.addBattleLog(`${this.battleSystem.enemyActive.name} fainted!`);
       
+      // Award experience to all player Pokemon that participated
+      this.awardExperience();
+      
       // Check if all enemy Pokemon are fainted
       if (this.battleSystem.getWinner() === 'player') {
         this.addBattleLog('Victory! You won the battle!');
@@ -155,6 +173,43 @@ export class BattleScene {
       }
     }, 1000);
   }
+
+  /**
+   * Award experience to player Pokemon
+   */
+  awardExperience() {
+    // Calculate experience from defeated enemy
+    const defeatedPokemon = this.battleSystem.enemyActive;
+    const baseExp = ExperienceSystem.getBaseExperience(defeatedPokemon.species);
+    const defeatedLevel = defeatedPokemon.level || 5;
+
+    // Award exp to all player Pokemon
+    for (const pokemon of this.playerTeam) {
+      if (pokemon.currentHp > 0) {
+        // Calculate exp gained
+        const expGained = ExperienceSystem.getExperienceReward(
+          baseExp,
+          defeatedLevel,
+          pokemon.level || 5,
+          1 // participants
+        );
+
+        this.addBattleLog(`${pokemon.name} gained ${expGained} EXP!`);
+
+        // Add experience and check for level up
+        const result = LevelingSystem.gainExperience(pokemon, expGained);
+
+        if (result.leveledUp) {
+          // Show level up messages
+          const message = LevelingSystem.formatLevelUpMessage(pokemon, result);
+          this.addBattleLog(message);
+        }
+
+        // Add EVs from defeated Pokemon
+        const evGains = LevelingSystem.getEVGains(defeatedPokemon.species);
+        LevelingSystem.addEVs(pokemon, evGains);
+      }
+    }
 
   /**
    * Execute enemy's turn

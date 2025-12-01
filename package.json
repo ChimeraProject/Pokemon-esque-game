@@ -7,10 +7,16 @@
     "start": "http-server -p 8080 -c-1",
     "dev": "http-server -p 8080 -c-1 -o"
   },
-  "keywords": ["pokemon", "game", "rpg", "phaser"],
+  "keywords": [
+    "pokemon",
+    "game",
+    "rpg",
+    "phaser"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "canvas": "^3.2.0",
     "http-server": "^14.1.1"
   }
 }

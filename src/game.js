@@ -81,9 +81,9 @@ class Game {
   /**
    * Initialize game scene
    */
-  initScene(sceneType) {
+  initScene(sceneType, isReturnFromBattle = false) {
     if (sceneType === 'overworld') {
-      this.currentScene = new OverworldScene(this);
+      this.currentScene = new OverworldScene(this, isReturnFromBattle);
       this.gameState = 'overworld';
     } else if (sceneType === 'battle') {
       // Battle scene is initialized via onEncounter
@@ -126,7 +126,7 @@ class Game {
    * Return to overworld after battle
    */
   returnToOverworld() {
-    this.initScene('overworld');
+    this.initScene('overworld', true); // true = returning from battle, use longer delay
   }
 
   /**

@@ -135,7 +135,20 @@ export class StatSystem {
    * @returns {Object} All calculated stats
    */
   static calculateAllStats(pokemon) {
-    const baseStats = pokemon.baseStats || {};
+    // Support both naming conventions: baseStats or stats
+    let baseStats = pokemon.baseStats;
+    if (!baseStats) {
+      // Try to map from pokemon.stats (uses abbreviated keys)
+      baseStats = {
+        hp: pokemon.stats?.hp,
+        attack: pokemon.stats?.atk,
+        defense: pokemon.stats?.def,
+        spatk: pokemon.stats?.spa,
+        spdef: pokemon.stats?.spd,
+        speed: pokemon.stats?.spe
+      };
+    }
+
     const level = pokemon.level || 5;
     const ivs = pokemon.ivs || this.generateRandomIVs();
     const evs = pokemon.evs || { hp: 0, attack: 0, defense: 0, spatk: 0, spdef: 0, speed: 0 };

@@ -28,16 +28,16 @@ export class LevelingSystem {
       pokemon.evs = { hp: 0, attack: 0, defense: 0, spatk: 0, spdef: 0, speed: 0 };
     }
 
+    // Calculate or recalculate stats using StatSystem
+    pokemon.stats = StatSystem.calculateAllStats(pokemon);
+
     // Set experience thresholds
     pokemon.experienceThisLevel = ExperienceSystem.getExperienceForLevel(pokemon.level, pokemon.growthRate);
     pokemon.experienceNextLevel = ExperienceSystem.getExperienceForLevel(pokemon.level + 1, pokemon.growthRate);
     pokemon.experienceToNextLevel = pokemon.experienceNextLevel - pokemon.experienceThisLevel;
 
-    // Calculate current stats
-    pokemon.stats = StatSystem.calculateAllStats(pokemon);
-    
-    // Set HP to full
-    if (!pokemon.currentHP) {
+    // Set HP to full if not already set
+    if (!pokemon.currentHp && pokemon.currentHp !== 0) {
       pokemon.currentHP = pokemon.stats.hp;
     }
 

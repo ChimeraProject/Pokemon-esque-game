@@ -19,7 +19,11 @@ export class BattleSystem {
    * Calculate damage based on type matchup and stats
    */
   calculateDamage(attacker, defender, move) {
-    let damage = (2 * attacker.stats.atk / 5 + 2) * move.power / defender.stats.def + 2;
+    // Use calculated stats if available, fallback to base stats
+    const atkStat = attacker.stats?.attack || attacker.stats?.atk || 49;
+    const defStat = defender.stats?.defense || defender.stats?.def || 49;
+    
+    let damage = (2 * atkStat / 5 + 2) * (move.power || 40) / defStat + 2;
     
     // Type effectiveness
     const effectiveness = this.getTypeEffectiveness(move.type, defender.type);

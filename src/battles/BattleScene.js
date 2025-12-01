@@ -40,13 +40,21 @@ export class BattleScene {
     
     // Initialize Pokemon with stats if not already done
     for (const pokemon of this.playerTeam) {
-      if (!pokemon.stats) {
+      if (!pokemon.stats || !pokemon.stats.attack) {
         LevelingSystem.initializePokemon(pokemon);
+      }
+      // Ensure currentHp is set
+      if (!pokemon.currentHp && pokemon.currentHp !== 0) {
+        pokemon.currentHp = pokemon.stats?.hp || 40;
       }
     }
     for (const pokemon of this.enemyTeam) {
-      if (!pokemon.stats) {
+      if (!pokemon.stats || !pokemon.stats.attack) {
         LevelingSystem.initializePokemon(pokemon);
+      }
+      // Ensure currentHp is set
+      if (!pokemon.currentHp && pokemon.currentHp !== 0) {
+        pokemon.currentHp = pokemon.stats?.hp || 40;
       }
     }
     

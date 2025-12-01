@@ -2,6 +2,33 @@
 
 A faithful browser recreation of Pokemon HeartGold/SoulSilver, built with Phaser.js. Explore Johto, battle trainers, collect Pokemon, and relive the story—all in your browser at 60 FPS.
 
+## New Features
+
+### 🗺️ Procedural World Generation
+- **Noise-based terrain generation** inspired by Veloren's voxel systems
+- Dynamic, replayable Johto regions with varied biomes
+- Cave/dungeon generation using cellular automata
+- Press `R` to regenerate the world, `C` to generate caves
+
+### ⚔️ Enhanced Battle System
+- **Complete turn-based combat** with damage calculation and type effectiveness
+- **Party management** - manage up to 6 Pokemon
+- **Difficulty scaling** (Easy, Normal, Hard, Challenge modes)
+- **Loot system** with item drops and rewards
+- Status effects, critical hits, and move priority
+
+### 🎨 16-bit Style UI
+- Retro pixel art UI inspired by DevilutionX
+- Custom panels, HP bars, and menu systems
+- Battle UI with Pokemon info boxes and action menus
+- Message queue system for battle narration
+
+### ⚡ Performance Optimizations
+- Asset loading system with caching
+- Object pooling to reduce garbage collection
+- FPS monitoring and performance tracking
+- Camera system for large procedural maps
+
 ## Purpose
 This project focuses on ideating, designing, coding, and building a playable browser-based clone of Pokemon HeartGold/SoulSilver. Replicate core RPG elements: exploration, turn-based battles, collecting/training, story quests. Optimize for HTML5/JS/Canvas, 60 FPS in browsers like Chrome/Firefox/Safari. Prioritize accessibility (mobile, keyboard, colorblind palettes, subtitles).
 
@@ -100,12 +127,49 @@ This project focuses on ideating, designing, coding, and building a playable bro
 1. Clone repo: `git clone https://github.com/ChimeraProject/Pokemon-esque-game.git`
 2. Install: `npm install`
 3. Run: `npm start` (opens at http://localhost:8080)
-4. Deploy: Push to `main`, enable GitHub Pages.
+4. Test: `npm test` (runs Jest tests)
+5. Deploy: Push to `main`, enable GitHub Pages.
+
+## Controls
+- **WASD / Arrow Keys**: Move player
+- **R**: Generate new procedural map
+- **C**: Generate cave/dungeon map
+- **Enter/Escape**: Open/close menu
 
 ## Project Structure
 - `assets/`: Art, audio, data (e.g., tilesets, sprites)
-- `src/`: JS code (overworld, battles, UI)
+- `src/`: JS code modules
+  - `src/battles/`: Battle system, Pokemon, Party, Damage calculations
+  - `src/world/`: Procedural generation, TileSet definitions
+  - `src/overworld/`: Overworld rendering and player movement
+  - `src/ui/`: UI components (BattleUI, MenuUI, UIManager)
+  - `src/core/`: Core systems (AssetLoader, ObjectPool, PerformanceMonitor)
+- `tests/`: Jest test files
 - `index.html`: Game entry
+
+## Architecture
+
+### Battle System (`src/battles/`)
+- `BattleSystem.js` - Main battle controller
+- `Pokemon.js` - Pokemon data structure with stats, types, status effects
+- `Party.js` - Party management (up to 6 Pokemon)
+- `DamageCalculator.js` - Damage formulas with STAB, type effectiveness
+- `DifficultyManager.js` - Difficulty scaling and adaptive difficulty
+- `LootSystem.js` - Item drops and reward tables
+
+### World Generation (`src/world/`)
+- `ProceduralGenerator.js` - Noise-based terrain and cave generation
+- `TileSet.js` - Tile type definitions and properties
+
+### UI System (`src/ui/`)
+- `UIManager.js` - Base UI rendering utilities
+- `BattleUI.js` - Battle screen interface
+- `MenuUI.js` - Pause menu system
+
+### Core Systems (`src/core/`)
+- `AssetLoader.js` - Asset loading and caching
+- `ObjectPool.js` - Object pooling for performance
+- `PerformanceMonitor.js` - FPS tracking and metrics
 
 ## Contact / Contributing
 Contributions welcome. Open issues in the repository for features, bugs, and asset additions. Follow the Development Concept Template for new component work.

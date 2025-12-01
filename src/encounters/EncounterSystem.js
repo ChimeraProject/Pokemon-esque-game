@@ -11,7 +11,7 @@ export class EncounterSystem {
   constructor() {
     // Encounter rates by tile type and area
     this.encounterRates = {
-      [TILE_TYPES.GRASS]: 0.5,    // 50% encounter rate on grass (increased for testing)
+      [TILE_TYPES.GRASS]: 0.5,    // 50% encounter rate on grass
       [TILE_TYPES.WATER]: 0.3,    // 30% on water
       [TILE_TYPES.PATH]: 0,       // No encounters on path
       [TILE_TYPES.SAND]: 0.5,     // 50% on sand
@@ -34,6 +34,8 @@ export class EncounterSystem {
 
     this.encounterSteps = 0;
     this.encounterThreshold = 0;
+    this.lastTileX = -1;
+    this.lastTileY = -1;
     this.setNewEncounterThreshold();
 
     console.log('🎣 Encounter System initialized');
@@ -54,12 +56,21 @@ export class EncounterSystem {
     const tileType = map.getTile(playerTileX, playerTileY);
     const encounterRate = this.encounterRates[tileType] || 0;
 
+    // Only count encounters when tile changes (prevents instant encounters on startup)
+    if (playerTileX !== this.lastTileX || playerTileY !== this.lastTileY) {
+      this.lastTileX = playerTileX;
+      this.lastTileY = playerTileY;
+      // Entering a new tile, reset step counter
+      this.encounterSteps = 0;
+      return null;
+    }
+
     if (encounterRate === 0) {
       this.encounterSteps = 0;
       return null;
     }
 
-    // Increment encounter steps
+    // Increment encounter steps (only when on same tile for multiple frames)
     this.encounterSteps++;
 
     // Log for debugging

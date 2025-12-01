@@ -1,91 +1,113 @@
-# Pokemon-esque Game
+# Pokemon HeartGold Browser Clone
 
-A Pokemon-style game built with JavaScript and HTML5 Canvas.
+A faithful browser recreation of Pokemon HeartGold/SoulSilver, built with Phaser.js. Explore Johto, battle trainers, collect Pokemon, and relive the story—all in your browser at 60 FPS.
 
-## 🎮 Features
+## Purpose
+This project focuses on ideating, designing, coding, and building a playable browser-based clone of Pokemon HeartGold/SoulSilver. Replicate core RPG elements: exploration, turn-based battles, collecting/training, story quests. Optimize for HTML5/JS/Canvas, 60 FPS in browsers like Chrome/Firefox/Safari. Prioritize accessibility (mobile, keyboard, colorblind palettes, subtitles).
 
-- **Overworld Exploration**: Navigate through various routes and towns
-- **Turn-based Battles**: Classic Pokemon-style battle system (in progress)
-- **Pixel Art Style**: Retro graphics with smooth animations
+## Scope
+- In: Concepts for HeartGold clone (Johto mechanics), story/scripts, mechanics (battles/exploration), designs (characters/Pokemon), pixel art, tile maps, JS code, browser prototypes, testing, deployment (GitHub Pages/itch.io).
+- Out: Non-web platforms, multiplayer, monetization, unrelated genres.
 
-## 🚀 Getting Started
+## Workflow
+1. Ideate: New issue with Development Concept Template.
+2. Validate: Research HeartGold via wikis/ROMs, playtest clones (e.g., Pokemon Showdown), gather browser feedback.
+3. Develop: Code mechanics (e.g., battle logic), create/source assets, design levels, integrate story.
+4. Prototype: Deploy playable demo (e.g., route + battle) via GitHub Pages.
+5. Test & Iterate: Browser testing, bug fixes (e.g., Canvas leaks), optimize load times.
+6. Evaluate: Use Rubric to score; decide beta/iterate/archive.
+7. Handoff: Code repo, asset packs, deployment guides, balance checklists.
 
-### Prerequisites
+## Norms
+- Structured: One component per issue (e.g., "Battle UI").
+- Labels: `component/`, `status/ideating` etc.
+- Timebox: 48h reviews, archive 60d.
+- Copilot: For code (e.g., "Phaser.js scene"), assets, debugging.
 
-- Node.js (v14 or higher recommended)
-- A modern web browser
+## Development Concept Template
+- Title: e.g., "HeartGold Battle System".
+- Pitch: One-sentence premise.
+- Problem/Goal: What achieves.
+- Target Players: Age/interests.
+- Core Mechanics: 3-6 (e.g., turn-based, types).
+- Setting/World: Johto regions.
+- Characters: Protagonist, rivals, Gym Leaders, Pokemon.
+- Story Outline: Key plots.
+- MVP Scope: Testable loop.
+- Metrics: e.g., FPS, load time.
+- Risks: Performance, legal.
+- Dependencies: Phaser.js, Aseprite.
+- Timeline: Phases.
+- Inspirations: HeartGold, clones.
+- Assets: Links.
+- Owners/Reviewers.
+- Next Step.
 
-### Running the Game
+## Development Checklist
+- Story Arcs: Quests, NPCs.
+- Mechanics: Battle stats, leveling.
+- Level Design: Maps, collision.
+- Character Bios: Backstories, evolutions.
+- Art Style: 16-bit pixel, animations.
+- Sound/Music: MIDI, SFX (Web Audio).
+- Balance: Difficulty, grind.
+- Tech: Phaser 3, browsers, optimizations.
+- Estimate/Team: Hours, roles.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ChimeraProject/Pokemon-esque-game.git
-   cd Pokemon-esque-game
-   ```
+## Evaluation Rubric (0-5, max 15)
+- Desirability: Fan appeal, uniqueness.
+- Viability: Browser fit, accessibility.
+- Feasibility: Complexity, performance.
+- Thresholds: 12-15=beta; 8-11=iterate; 0-7=archive.
 
-2. Start the development server:
-   ```bash
-   npm start
-   ```
+## Checkpoints
+- Validate: Compare to HeartGold, feedback.
+- Prototype: Mockups (e.g., battle UI).
+- Build: Assemble game.
 
-3. Open your browser and navigate to `http://localhost:8080`
+## Handoff
+- Code, assets, guides, balance.
 
-### Running in GitHub Codespaces
+## Tools/Resources
+- Design: Aseprite; share links.
+- Prototyping: Phaser.js; GitHub Pages.
+- Coding: JS/Canvas; Copilot.
+- Validation: DevTools, itch.io.
+- Copilot: "JS type chart", "Gym art ideas".
 
-1. Open this repository in GitHub Codespaces
-2. Wait for the environment to initialize
-3. Run `npm start` in the terminal
-4. Click on the "Open in Browser" button when the port is forwarded
+## Accessibility/Privacy
+- Palettes, controls, subtitles.
+- Open-source, no data collection.
 
-## 🎯 Controls
+## Cadences
+- Daily async updates.
+- Weekly demos.
+- Archive inactive.
 
-| Key | Action |
-|-----|--------|
-| Arrow Keys / WASD | Move character |
-| Enter | Interact / Confirm |
-| Escape | Menu / Cancel |
+## Tips
+- Faithful to HeartGold, adapt for browser (localStorage saves).
+- Fun over grind; measure engagement.
+- Use Copilot for ideas.
 
-## 📁 Project Structure
+## FAQs
+- Start: Issue with template.
+- Vague? Sub-issues.
+- Copilot: Generates code/assets.
+- Pitfalls: Over-engineer; focus MVP; browser limits.
+- Legal: Fan project, avoid branding.
 
-```
-pokemon-esque-game/
-├── assets/
-│   ├── art/        # Sprites and tilesets
-│   ├── audio/      # Music and sound effects
-│   └── data/       # JSON data files for maps, Pokemon, etc.
-├── src/
-│   ├── battles/    # Battle system modules
-│   ├── overworld/  # Overworld and map modules
-│   └── game.js     # Main game entry point
-├── index.html      # HTML entry point
-├── package.json    # Project configuration
-└── README.md       # This file
-```
+## Setup
+1. Clone repo: `git clone https://github.com/ChimeraProject/Pokemon-esque-game.git`
+2. Install: `npm install`
+3. Run: `npm start` (opens at http://localhost:8080)
+4. Deploy: Push to `main`, enable GitHub Pages.
 
-## 🗺️ Current Implementation
+## Project Structure
+- `assets/`: Art, audio, data (e.g., tilesets, sprites)
+- `src/`: JS code (overworld, battles, UI)
+- `index.html`: Game entry
 
-### Route 29 (Starting Area)
-The game currently features Route 29 as the starting area with:
-- Grass tiles for wild Pokemon encounters
-- Path tiles for safe travel
-- Tree and water obstacles
-- Grid-based movement system
+## Contact / Contributing
+Contributions welcome. Open issues in the repository for features, bugs, and asset additions. Follow the Development Concept Template for new component work.
 
-## 🛠️ Development
-
-### Building
-No build step required - the game runs directly in the browser using ES modules.
-
-### Adding New Maps
-Maps are defined in the respective overworld files as 2D arrays. See `src/overworld/Overworld.js` for an example.
-
-### Adding Pokemon Data
-Pokemon data will be stored in `assets/data/` as JSON files.
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contribute ideas/issues! 🚀

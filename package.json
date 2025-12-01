@@ -8,7 +8,9 @@
     "build": "echo 'No build step yet'",
     "test": "echo 'No tests yet'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "phaser": "^3.60.0"
+  },
   "devDependencies": {
     "http-server": "^14.1.1"
   },

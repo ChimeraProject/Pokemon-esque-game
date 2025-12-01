@@ -37,8 +37,8 @@ Open your browser at **http://localhost:8080**
 
 ```
 Pokemon-esque-game/
-├── index.html          # Game entry point (loads Phaser.js + game.js)
-├── package.json        # Dependencies: phaser@3.60.0, http-server
+├── index.html          # Game entry point (loads Phaser.js via CDN + game.js)
+├── package.json        # Dev server: http-server (Phaser loaded via CDN)
 ├── src/
 │   ├── game.js         # Main game loop, canvas setup, input handling
 │   ├── overworld/
@@ -133,7 +133,7 @@ npm test      # (No tests yet)
 
 ## 📚 Tech Stack
 
-- **Phaser 3.60** - Game framework (CDN loaded)
+- **Phaser 3.60** - Game framework (loaded via CDN in index.html)
 - **Vanilla JS** - ES6 modules
 - **Canvas API** - Rendering
 - **http-server** - Development server
